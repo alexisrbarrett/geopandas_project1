@@ -1,0 +1,71 @@
+Notes:
+
+*********************
+Speed vs accuracy:
+
+What are outliers??
+
+how fast makes sense to record?
+    -161.7 = 100
+    -160 kmh = 99 mph
+    -150 kmh = 93 mph
+    -140 = 86 
+    -130 = 80
+    -120 = 74
+    -110 = 68
+indiana speed limit is 70 mph: rural freeways
+65 urban freeways
+
+how much speeding is reasonable?
+
+check location of these points above 110 (how many are there?)
+    above 120? how many?
+
+Accuracy: most seem to be 5 or 10 m
+    how many points above 10 m accuracy? 
+    
+If we suppose that these points aren't accounted for, should we re-impute these values based on the distance formula?
+
+#Maximum speed is 161.70 kilometers per hour.
+#Minimum speed is 0.0 kilometers per hour.
+******
+**IS THERE A CORRELATION?: 
+******
+  There is a positive correlation between speed and accuracy of the geolocation data, wherein high speeds lead to a large accuracy value. (which in laymen terms means that it is low accuracy, because of the way that accuracy is defined in this dataset.)
+
+*******************
+Speed Histogram
+
+include points recorded as 0mph??? check if they are surrounded by points which are also stopped or slow as to indicate a red light. however mostly these are highways, and they should not be stopped. 
+
+It is unusal for a histogram to be multimodal, as is this histogram, with four distinct peaks. In the case of this dataset however, it can be explained by speed limits. 
+
+*******************
+How to determine speed outliers?
+
+To use mu +- 2 sigma or mu +- 3 sigma as outlier bounds would be oversimplified for this dataset. As the geolocation datapoints were taken during a cross-country journey, and given the range of speeds from 0 kph to 161.7 kph, the points were taken from a car. It is reasonable that some datapoints would be taken at 0 kph because cars have to stop while traveling cross country. Therefore there should not be any outlier data on the lower bound of the speed. The upperbound poses a good question however because the maximum speed of 161.7 kph translates to 100.5 mph, which is far above the 70 mph speed limit . 
+
+The lowerbound of the dataset should remain at 0 kph because as automobile travel data, it is reasonable that the car should stop moving, therefore making these data important. The upper bound should be mu + 2 sigma because this value (122.2 kph or about 76 mph) coordinates closely to the speed limit in both Indiana and Illinois of 70 mph. There is also evidence that the accuracy of the data is lower at higher speeds, making this bound more important than a lower bound. It is unlikely that the driver would drive more than 6 mph above the speed limit given the value of the uppermost modes at approximately 110 kph or 68 mph. 
+
+
+*******************
+Accuracy Histogram
+
+Most points are 5 or 10. how many points total? would exclude fewer than 100 points if we discount accuracy. 
+
+"""It would be a good choice to eliminate values above 10 m accuracy from the dataset 
+because over 2500 points would be included in the dataset of 2850 points. Proportionally,
+this means keeping about 90% of the data."""
+
+
+*****
+DATA CLEANING
+#Outliers will be considered speeds greater than 2 standard deviations above average speed
+#as well as accuracy greater than 10 meters. This definition of outliers will include
+#214 data points which will be eliminated from the dataset. None were modified.  
+
+***Speed vs accuracy clean
+
+#There is clumping present at 5 m and 10 m accuracy, though there is no longer any 
+#correlation in this plot between speed and accuracy. This is ideal because we want 
+#speed and accuracy to act as independent variables. 
